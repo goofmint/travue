@@ -175,7 +175,9 @@ class SupabaseLandmarkRepository implements LandmarkRepository {
       address: null,
       wikipediaUrl: null,
       category: null,
-      createdAt: DateTime.now(), // Search results don't include created_at
+      createdAt: json['created_at'] != null
+          ? DateTime.parse(json['created_at'] as String)
+          : DateTime.fromMillisecondsSinceEpoch(0), // Use epoch as placeholder
     );
   }
 }
