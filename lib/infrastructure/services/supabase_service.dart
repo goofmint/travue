@@ -24,7 +24,7 @@ class SupabaseService {
   
   Future<bool> testConnection() async {
     try {
-      final response = await client
+      await client
           .from('users')
           .select('count')
           .count(CountOption.exact);
