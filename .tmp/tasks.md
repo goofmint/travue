@@ -10,35 +10,39 @@
 
 ### Phase 1: 基盤実装（2週間）
 
-#### Task 1.1: Flutter プロジェクト初期設定
+#### Task 1.1: Flutter プロジェクト初期設定 ✅
 
-- [ ] Flutter プロジェクト作成（flutter create travue）
-- [ ] 基本的なディレクトリ構造の設定（lib/domain, lib/infrastructure, lib/presentation）
-- [ ] pubspec.yaml の設定（依存関係の追加）
-- [ ] flutter_lints の設定
-- **完了条件**: プロジェクトがビルド・実行可能
+- [x] Flutter プロジェクト作成（flutter create travue）
+- [x] 基本的なディレクトリ構造の設定（lib/domain, lib/infrastructure, lib/presentation）
+- [x] pubspec.yaml の設定（依存関係の追加）
+- [x] flutter_lints の設定
+- [x] Clean Architecture実装（Repository interfaces, Use Cases, Providers）
+- **完了条件**: プロジェクトがビルド・実行可能 ✅
 - **依存**: なし
 - **推定時間**: 2時間
+- **実績**: PR #1, #2で完了
 
-#### Task 1.2: Supabase プロジェクトセットアップ
+#### Task 1.2: Supabase プロジェクトセットアップ ✅
 
-- [ ] Supabase プロジェクトの作成
-- [ ] 環境変数の設定（.env ファイル）
-- [ ] Supabase Flutter SDK の統合
-- [ ] 接続テストの実装
-- **完了条件**: Supabaseとの接続が確認できる
+- [x] Supabase プロジェクトの作成
+- [x] 環境変数の設定（.env ファイル）
+- [x] Supabase Flutter SDK の統合
+- [x] 接続テストの実装
+- **完了条件**: Supabaseとの接続が確認できる ✅
 - **依存**: Task 1.1
 - **推定時間**: 3時間
+- **実績**: PR #1で完了
 
-#### Task 1.3: データベーススキーマ実装
+#### Task 1.3: データベーススキーマ実装 ✅
 
-- [ ] PostgreSQL + PostGIS の有効化確認
-- [ ] 全テーブルの作成（users, landmarks, posts, guides等）
-- [ ] インデックスの作成
-- [ ] 空間検索関数の実装
-- **完了条件**: 全テーブルと関数が作成完了
+- [x] PostgreSQL + PostGIS の有効化確認
+- [x] 全テーブルの作成（users, landmarks, posts, guides等）
+- [x] インデックスの作成
+- [x] 空間検索関数の実装
+- **完了条件**: 全テーブルと関数が作成完了 ✅
 - **依存**: Task 1.2
 - **推定時間**: 4時間
+- **実績**: PR #1で完了
 
 #### Task 1.4: Row Level Security (RLS) 設定
 
@@ -59,15 +63,17 @@
 - **依存**: Task 1.2, Task 1.3
 - **推定時間**: 4時間
 
-#### Task 1.6: 基本画面レイアウト実装
+#### Task 1.2: Core UI Components Development 🔄
 
-- [ ] AppRouter の実装
-- [ ] ナビゲーション構造の実装
-- [ ] 基本的な画面遷移
-- [ ] 共通Widgetの作成
-- **完了条件**: 画面遷移が動作
-- **依存**: Task 1.5
-- **推定時間**: 3時間
+- [ ] テーマシステムの実装（AppTheme, Colors, TextStyles）
+- [ ] 共通ウィジェットの作成（TravueButton, TravueCard, TravueTextField等）
+- [ ] AppRouter の実装とナビゲーション構造
+- [ ] レスポンシブレイアウトコンポーネント
+- [ ] ウィジェットテストの実装
+- **完了条件**: 基本UIコンポーネントが実装され、テストが通る
+- **依存**: Task 1.1（Clean Architecture実装）
+- **推定時間**: 14時間
+- **現在**: task/1.2-core-ui-components ブランチで実装中
 
 #### Task 1.7: エラーハンドリング基盤
 
