@@ -63,7 +63,7 @@
 - **依存**: Task 1.2, Task 1.3
 - **推定時間**: 4時間
 
-#### Task 1.2: Core UI Components Development 🔄
+#### Task 1.6: Core UI Components Development 🔄
 
 - [ ] テーマシステムの実装（AppTheme, Colors, TextStyles）
 - [ ] 共通ウィジェットの作成（TravueButton, TravueCard, TravueTextField等）

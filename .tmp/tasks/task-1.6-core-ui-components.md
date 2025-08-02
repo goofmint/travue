@@ -1,4 +1,4 @@
-# Task 1.2: Core UI Components Development
+# Task 1.6: Core UI Components Development
 
 ## 概要
 
