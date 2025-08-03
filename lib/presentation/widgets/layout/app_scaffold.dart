@@ -3,6 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppScaffold extends StatelessWidget {
   final Widget body;
+  final String? title;
+  final Widget? leading;
+  final List<Widget>? actions;
   final PreferredSizeWidget? appBar;
   final Widget? bottomNavigationBar;
   final Widget? floatingActionButton;
@@ -18,6 +21,9 @@ class AppScaffold extends StatelessWidget {
   const AppScaffold({
     super.key,
     required this.body,
+    this.title,
+    this.leading,
+    this.actions,
     this.appBar,
     this.bottomNavigationBar,
     this.floatingActionButton,
@@ -48,7 +54,13 @@ class AppScaffold extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return Scaffold(
-          appBar: appBar,
+          appBar: appBar ?? (title != null
+              ? AppBar(
+                  title: Text(title!),
+                  leading: leading,
+                  actions: actions,
+                )
+              : null),
           body: SafeArea(
             child: bodyWidget,
           ),

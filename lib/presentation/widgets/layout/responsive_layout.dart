@@ -11,20 +11,26 @@ class ResponsiveLayout extends StatelessWidget {
   final Widget mobile;
   final Widget? tablet;
   final Widget? desktop;
+  final double? mobileBreakpoint;
+  final double? tabletBreakpoint;
 
   const ResponsiveLayout({
     super.key,
     required this.mobile,
     this.tablet,
     this.desktop,
+    this.mobileBreakpoint,
+    this.tabletBreakpoint,
   });
 
-  static ScreenSize getScreenSize(BuildContext context) {
+  static ScreenSize getScreenSize(BuildContext context, {double? mobileBreakpoint, double? tabletBreakpoint}) {
     final width = MediaQuery.of(context).size.width;
+    final tabletBreak = tabletBreakpoint ?? 1200;
+    final mobileBreak = mobileBreakpoint ?? 768;
     
-    if (width >= 1200) {
+    if (width >= tabletBreak) {
       return ScreenSize.desktop;
-    } else if (width >= 768) {
+    } else if (width >= mobileBreak) {
       return ScreenSize.tablet;
     } else {
       return ScreenSize.mobile;
@@ -45,7 +51,11 @@ class ResponsiveLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = getScreenSize(context);
+    final screenSize = getScreenSize(
+      context,
+      mobileBreakpoint: mobileBreakpoint,
+      tabletBreakpoint: tabletBreakpoint,
+    );
     
     return switch (screenSize) {
       ScreenSize.desktop => desktop ?? tablet ?? mobile,
