@@ -73,7 +73,7 @@
 - **完了条件**: 基本UIコンポーネントが実装され、テストが通る
 - **依存**: Task 1.1（Clean Architecture実装）
 - **推定時間**: 14時間
-- **現在**: task/1.2-core-ui-components ブランチで実装中
+- **現在**: task/1.6-core-ui-components ブランチで実装中
 
 #### Task 1.7: エラーハンドリング基盤
 
