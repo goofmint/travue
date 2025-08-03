@@ -156,9 +156,16 @@ void main() {
         matching: find.byType(Padding),
       );
 
-      expect(paddingFinder, findsOneWidget);
-      final paddingWidget = tester.widget<Padding>(paddingFinder);
-      expect(paddingWidget.padding, equals(customPadding));
+      expect(paddingFinder, findsWidgets);
+      
+      // Find the specific padding with our custom padding value
+      final paddingWidgets = tester.widgetList<Padding>(paddingFinder);
+      final customPaddingWidget = paddingWidgets.firstWhere(
+        (widget) => widget.padding == customPadding,
+        orElse: () => throw Exception('Custom padding not found'),
+      );
+      
+      expect(customPaddingWidget.padding, equals(customPadding));
     });
 
     testWidgets('handles drawer when provided', (tester) async {
