@@ -160,9 +160,9 @@ void main() {
 
       // All content should still be visible
       expect(find.text('Welcome to Travue'), findsOneWidget);
-      expect(find.text('Discover'), findsOneWidget);
-      expect(find.text('Create'), findsOneWidget);
-      expect(find.text('Share'), findsOneWidget);
+      expect(find.text('Explore Maps'), findsOneWidget);
+      expect(find.text('Create Guides'), findsOneWidget);
+      expect(find.text('Share Moments'), findsOneWidget);
     });
 
     testWidgets('scrolls when content overflows', (tester) async {
