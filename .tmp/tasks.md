@@ -44,14 +44,15 @@
 - **推定時間**: 4時間
 - **実績**: PR #1で完了
 
-#### Task 1.4: Row Level Security (RLS) 設定
+#### Task 1.4: Row Level Security (RLS) 設定 ✅
 
-- [ ] 各テーブルのRLSポリシー作成
-- [ ] 権限テストの実装
-- [ ] セキュリティルールのドキュメント化
-- **完了条件**: 適切な権限管理が動作
+- [x] 各テーブルのRLSポリシー作成
+- [x] 権限テストの実装
+- [x] セキュリティルールのドキュメント化
+- **完了条件**: 適切な権限管理が動作 ✅
 - **依存**: Task 1.3
 - **推定時間**: 3時間
+- **実績**: PR #4で完了
 
 #### Task 1.5: 認証基盤実装
 
@@ -63,17 +64,17 @@
 - **依存**: Task 1.2, Task 1.3
 - **推定時間**: 4時間
 
-#### Task 1.6: Core UI Components Development 🔄
+#### Task 1.6: Core UI Components Development ✅
 
-- [ ] テーマシステムの実装（AppTheme, Colors, TextStyles）
-- [ ] 共通ウィジェットの作成（TravueButton, TravueCard, TravueTextField等）
-- [ ] AppRouter の実装とナビゲーション構造
-- [ ] レスポンシブレイアウトコンポーネント
-- [ ] ウィジェットテストの実装
-- **完了条件**: 基本UIコンポーネントが実装され、テストが通る
+- [x] テーマシステムの実装（AppTheme, Colors, TextStyles）
+- [x] 共通ウィジェットの作成（TravueButton, TravueCard, TravueTextField等）
+- [x] AppRouter の実装とナビゲーション構造
+- [x] レスポンシブレイアウトコンポーネント
+- [x] ウィジェットテストの実装
+- **完了条件**: 基本UIコンポーネントが実装され、テストが通る ✅
 - **依存**: Task 1.1（Clean Architecture実装）
 - **推定時間**: 14時間
-- **現在**: task/1.6-core-ui-components ブランチで実装中
+- **実績**: PR #3で完了
 
 #### Task 1.7: エラーハンドリング基盤
 
