@@ -63,17 +63,17 @@
 - **依存**: Task 1.2, Task 1.3
 - **推定時間**: 4時間
 
-#### Task 1.6: Core UI Components Development 🔄
+#### Task 1.6: Core UI Components Development ✅
 
-- [ ] テーマシステムの実装（AppTheme, Colors, TextStyles）
-- [ ] 共通ウィジェットの作成（TravueButton, TravueCard, TravueTextField等）
-- [ ] AppRouter の実装とナビゲーション構造
-- [ ] レスポンシブレイアウトコンポーネント
-- [ ] ウィジェットテストの実装
-- **完了条件**: 基本UIコンポーネントが実装され、テストが通る
+- [x] テーマシステムの実装（AppTheme, Colors, TextStyles）
+- [x] 共通ウィジェットの作成（TravueButton, TravueCard, TravueTextField等）
+- [x] AppRouter の実装とナビゲーション構造
+- [x] レスポンシブレイアウトコンポーネント
+- [x] ウィジェットテストの実装
+- **完了条件**: 基本UIコンポーネントが実装され、テストが通る ✅
 - **依存**: Task 1.1（Clean Architecture実装）
 - **推定時間**: 14時間
-- **現在**: task/1.6-core-ui-components ブランチで実装中
+- **実績**: PR #3で完了
 
 #### Task 1.7: エラーハンドリング基盤
 
