@@ -54,15 +54,16 @@
 - **推定時間**: 3時間
 - **実績**: PR #4で完了
 
-#### Task 1.5: 認証基盤実装
+#### Task 1.5: 認証基盤実装 ✅
 
-- [ ] Supabase Auth の設定（Email, Google, Apple）
-- [ ] AuthenticationController の実装
-- [ ] 認証状態管理（Riverpod）
-- [ ] ログイン永続化の実装
-- **完了条件**: 各種認証方法が動作
+- [x] Supabase Auth の設定（Email, Google, Apple）
+- [x] AuthenticationController の実装
+- [x] 認証状態管理（Riverpod）
+- [x] ログイン永続化の実装
+- **完了条件**: 各種認証方法が動作 ✅
 - **依存**: Task 1.2, Task 1.3
 - **推定時間**: 4時間
+- **実績**: PR #5で完了
 
 #### Task 1.6: Core UI Components Development ✅
 
