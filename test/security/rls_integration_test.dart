@@ -33,10 +33,25 @@ void main() {
             .limit(1);
         
         // If we reach here, RLS might not be properly configured
-        // This is actually a failure case if RLS is working
+        fail('Expected RLS to block unauthenticated access to users table');
       } catch (e) {
         // Expected behavior - RLS should block unauthenticated access
         expect(e, isA<PostgrestException>());
+        
+        final postgrestException = e as PostgrestException;
+        
+        // Check for RLS-specific error codes and messages
+        // Common RLS error codes: '42501' (insufficient privilege)
+        // Common RLS error messages contain 'policy' or 'permission'
+        final isRlsError = postgrestException.code == '42501' ||
+            postgrestException.code == 'PGRST116' ||
+            postgrestException.message.toLowerCase().contains('policy') ||
+            postgrestException.message.toLowerCase().contains('permission') ||
+            postgrestException.message.toLowerCase().contains('insufficient') ||
+            postgrestException.message.toLowerCase().contains('denied');
+            
+        expect(isRlsError, isTrue, 
+            reason: 'Expected RLS-related error, but got: ${postgrestException.code} - ${postgrestException.message}');
       }
     });
     
@@ -63,6 +78,21 @@ void main() {
       } catch (e) {
         // Expected behavior - RLS should block unauthenticated post creation
         expect(e, isA<PostgrestException>());
+        
+        final postgrestException = e as PostgrestException;
+        
+        // Check for RLS-specific error codes and messages
+        // Common RLS error codes: '42501' (insufficient privilege)
+        // Common RLS error messages contain 'policy' or 'permission'
+        final isRlsError = postgrestException.code == '42501' ||
+            postgrestException.code == 'PGRST116' ||
+            postgrestException.message.toLowerCase().contains('policy') ||
+            postgrestException.message.toLowerCase().contains('permission') ||
+            postgrestException.message.toLowerCase().contains('insufficient') ||
+            postgrestException.message.toLowerCase().contains('denied');
+            
+        expect(isRlsError, isTrue, 
+            reason: 'Expected RLS-related error, but got: ${postgrestException.code} - ${postgrestException.message}');
       }
     });
     
