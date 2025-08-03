@@ -122,6 +122,8 @@ abstract class AuthenticationRepository {
 
 ```dart
 // lib/infrastructure/repositories/supabase_authentication_repository.dart
+import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
+
 class SupabaseAuthenticationRepository implements AuthenticationRepository {
   final SupabaseClient _client;
   
@@ -142,15 +144,52 @@ class SupabaseAuthenticationRepository implements AuthenticationRepository {
   
   @override
   Future<User?> signInWithProvider(OAuthProvider provider) async {
-    final response = await _client.auth.signInWithOAuth(provider);
+    // Initiate the OAuth flow; returns after the external browser redirect completes.
+    await _client.auth.signInWithOAuth(provider);
+    final user = _client.auth.currentUser;
+    return user != null ? _mapSupabaseUserToUser(user) : null;
+  }
+  
+  @override
+  Future<User?> signUpWithEmail({
+    required String email,
+    required String password,
+    required String displayName,
+  }) async {
+    final response = await _client.auth.signUp(
+      email: email,
+      password: password,
+      data: {'display_name': displayName},
+    );
     
-    if (response) {
-      final user = _client.auth.currentUser;
-      if (user != null) {
-        return _mapSupabaseUserToUser(user);
-      }
+    if (response.user != null) {
+      return _mapSupabaseUserToUser(response.user!);
     }
     return null;
+  }
+  
+  @override
+  Future<void> signOut() async {
+    await _client.auth.signOut();
+  }
+  
+  @override
+  Future<void> resetPassword(String email) async {
+    await _client.auth.resetPasswordForEmail(email);
+  }
+  
+  @override
+  Stream<User?> get authStateChanges {
+    return _client.auth.onAuthStateChange.map((data) {
+      final user = data.user;
+      return user != null ? _mapSupabaseUserToUser(user) : null;
+    });
+  }
+  
+  @override
+  User? get currentUser {
+    final user = _client.auth.currentUser;
+    return user != null ? _mapSupabaseUserToUser(user) : null;
   }
   
   User _mapSupabaseUserToUser(supabase.User supabaseUser) {
