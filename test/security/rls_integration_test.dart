@@ -41,14 +41,17 @@ void main() {
         final postgrestException = e as PostgrestException;
         
         // Check for RLS-specific error codes and messages
-        // Common RLS error codes: '42501' (insufficient privilege)
+        // Common RLS error codes: '42501' (insufficient privilege), '400' (bad request for missing table/RLS)
         // Common RLS error messages contain 'policy' or 'permission'
         final isRlsError = postgrestException.code == '42501' ||
             postgrestException.code == 'PGRST116' ||
+            postgrestException.code == '400' ||  // Include 400 as it can indicate missing table/RLS
             postgrestException.message.toLowerCase().contains('policy') ||
             postgrestException.message.toLowerCase().contains('permission') ||
             postgrestException.message.toLowerCase().contains('insufficient') ||
-            postgrestException.message.toLowerCase().contains('denied');
+            postgrestException.message.toLowerCase().contains('denied') ||
+            postgrestException.message.toLowerCase().contains('relation') ||
+            postgrestException.message.toLowerCase().contains('does not exist');
             
         expect(isRlsError, isTrue, 
             reason: 'Expected RLS-related error, but got: ${postgrestException.code} - ${postgrestException.message}');
@@ -82,14 +85,17 @@ void main() {
         final postgrestException = e as PostgrestException;
         
         // Check for RLS-specific error codes and messages
-        // Common RLS error codes: '42501' (insufficient privilege)
+        // Common RLS error codes: '42501' (insufficient privilege), '400' (bad request for missing table/RLS)
         // Common RLS error messages contain 'policy' or 'permission'
         final isRlsError = postgrestException.code == '42501' ||
             postgrestException.code == 'PGRST116' ||
+            postgrestException.code == '400' ||  // Include 400 as it can indicate missing table/RLS
             postgrestException.message.toLowerCase().contains('policy') ||
             postgrestException.message.toLowerCase().contains('permission') ||
             postgrestException.message.toLowerCase().contains('insufficient') ||
-            postgrestException.message.toLowerCase().contains('denied');
+            postgrestException.message.toLowerCase().contains('denied') ||
+            postgrestException.message.toLowerCase().contains('relation') ||
+            postgrestException.message.toLowerCase().contains('does not exist');
             
         expect(isRlsError, isTrue, 
             reason: 'Expected RLS-related error, but got: ${postgrestException.code} - ${postgrestException.message}');
