@@ -134,14 +134,19 @@ class RLSTestHelper {
   
   /// Clean up test data
   static Future<void> cleanupTestData() async {
-    // Delete in reverse order to avoid foreign key constraints
-    await _client.from('likes').delete().neq('id', '');
-    await _client.from('comments').delete().neq('id', '');
-    await _client.from('guide_items').delete().neq('id', '');
-    await _client.from('guides').delete().neq('id', '');
-    await _client.from('posts').delete().neq('id', '');
-    await _client.from('landmarks').delete().neq('id', '');
-    await _client.from('users').delete().neq('id', '');
+    try {
+      // Delete only test data created by this test helper
+      await _client.from('likes').delete().eq('id', 'like-1');
+      await _client.from('comments').delete().eq('id', 'comment-1');
+      await _client.from('guide_items').delete().eq('id', 'guide-item-1');
+      await _client.from('guides').delete().inFilter('id', ['guide-1', 'guide-2']);
+      await _client.from('posts').delete().inFilter('id', ['post-1', 'post-2', 'post-3']);
+      await _client.from('landmarks').delete().eq('id', 'landmark-1');
+      await _client.from('users').delete().inFilter('id', [testUser1Id, testUser2Id, adminUserId]);
+    } catch (e) {
+      // Ignore cleanup errors to prevent test failures
+      print('Cleanup error (ignored): $e');
+    }
   }
   
   /// Mock authentication for a specific user
