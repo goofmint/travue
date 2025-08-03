@@ -59,8 +59,10 @@ CREATE POLICY "Authenticated users can create posts" ON posts
   FOR INSERT TO authenticated WITH CHECK (auth.uid() = user_id);
 
 -- 投稿者のみ自分の投稿を更新・削除可能
-CREATE POLICY "Users can update own posts" ON posts 
-  FOR UPDATE USING (auth.uid() = user_id);
+CREATE POLICY "Users can update own posts" ON posts
+  FOR UPDATE
+    USING (auth.uid() = user_id)
+    WITH CHECK (auth.uid() = user_id);
 
 CREATE POLICY "Users can delete own posts" ON posts 
   FOR DELETE USING (auth.uid() = user_id);
@@ -82,8 +84,10 @@ CREATE POLICY "Authenticated users can create guides" ON guides
   FOR INSERT TO authenticated WITH CHECK (auth.uid() = user_id);
 
 -- 作成者のみ自分のガイドを更新・削除可能
-CREATE POLICY "Users can update own guides" ON guides 
-  FOR UPDATE USING (auth.uid() = user_id);
+CREATE POLICY "Users can update own guides" ON guides
+  FOR UPDATE
+    USING (auth.uid() = user_id)
+    WITH CHECK (auth.uid() = user_id);
 
 CREATE POLICY "Users can delete own guides" ON guides 
   FOR DELETE USING (auth.uid() = user_id);
@@ -94,13 +98,21 @@ CREATE POLICY "Users can delete own guides" ON guides
 ```sql
 -- ガイド作成者のみガイドアイテムを管理可能
 CREATE POLICY "Guide owners can manage guide items" ON guide_items 
-  FOR ALL USING (
-    EXISTS (
-      SELECT 1 FROM guides 
-      WHERE guides.id = guide_items.guide_id 
-      AND guides.user_id = auth.uid()
+  FOR ALL 
+    USING (
+      EXISTS (
+        SELECT 1 FROM guides 
+        WHERE guides.id = guide_items.guide_id 
+        AND guides.user_id = auth.uid()
+      )
     )
-  );
+    WITH CHECK (
+      EXISTS (
+        SELECT 1 FROM guides 
+        WHERE guides.id = guide_items.guide_id 
+        AND guides.user_id = auth.uid()
+      )
+    );
 
 -- 公開ガイドのアイテムは全ユーザーが参照可能
 CREATE POLICY "Anyone can view public guide items" ON guide_items 
@@ -136,8 +148,10 @@ CREATE POLICY "Authenticated users can create comments" ON comments
   FOR INSERT TO authenticated WITH CHECK (auth.uid() = user_id);
 
 -- コメント作成者のみ自分のコメントを更新・削除可能
-CREATE POLICY "Users can update own comments" ON comments 
-  FOR UPDATE USING (auth.uid() = user_id);
+CREATE POLICY "Users can update own comments" ON comments
+  FOR UPDATE
+    USING (auth.uid() = user_id)
+    WITH CHECK (auth.uid() = user_id);
 
 CREATE POLICY "Users can delete own comments" ON comments 
   FOR DELETE USING (auth.uid() = user_id);
